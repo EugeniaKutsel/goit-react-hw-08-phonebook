@@ -1,4 +1,8 @@
+import { useDispatch } from "react-redux";
+import { registerUser } from "redux/auth/authOperations";
+
 const RegisterForm = () => {
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -8,7 +12,8 @@ const RegisterForm = () => {
       email: email.value,
       password: password.value,
     }
-    console.log(user);
+    dispatch(registerUser(user));
+    e.target.reset();
   }
 
   return (
