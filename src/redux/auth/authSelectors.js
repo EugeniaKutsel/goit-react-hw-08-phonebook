@@ -1,2 +1,2 @@
-export const ssLoggedInSelector = state => state.auth.isLoggedIn;
+export const isLoggedInSelector = state => state.auth.isLoggedIn;
 export const tokenSelector = state => state.auth.token;

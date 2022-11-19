@@ -1,4 +1,4 @@
-import { registerUser } from "./authOperations";
+import { logInUser, logOutUser, refreshCurrentUser, registerUser } from "./authOperations";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
@@ -20,8 +20,6 @@ const handleRejected = (state, action) => {
   state.error = action.payload;
 }
 
-
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -35,6 +33,29 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.pending, handlePending)
       .addCase(registerUser.rejected, handleRejected)
+      .addCase(logInUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.loading = false;
+        state.isLoggedIn = true;
+      })
+      .addCase(logInUser.pending, handlePending)
+      .addCase(logInUser.rejected, handleRejected)
+      .addCase(logOutUser.fulfilled, (state) => {
+        state.user = { };
+        state.token = '';
+        state.loading = false;
+        state.isLoggedIn = false;
+      })
+      .addCase(logOutUser.pending, handlePending)
+      .addCase(logOutUser.rejected, handleRejected)
+      .addCase(refreshCurrentUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.loading = false;
+        state.isLoggedIn = true;
+      })
+      .addCase(refreshCurrentUser.pending, handlePending)
+      .addCase(refreshCurrentUser.rejected, handleRejected)
   }
 })
 

@@ -10,13 +10,44 @@ export const registerUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-})
+  }
+)
+
+export const logInUser = createAsyncThunk(
+  'auth/log_in', async (user, { rejectWithValue }) => {
+    try {
+      const { data } = await contactAxiosInstance.post('/users/login', user);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
+
+export const logOutUser = createAsyncThunk(
+  'auth/log_out', async (_, { rejectWithValue }) => {
+    try {
+      await contactAxiosInstance.post('/users/logout');
+      token.unset();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
 
 export const refreshCurrentUser = createAsyncThunk(
   'auth/refresh', async (_, { rejectWithValue, getState }) => {
+    const currentToken = getState().auth.token;
+    token.set(currentToken);
+
+    if (currentToken === null) {
+      return rejectWithValue;
+    }
+
     try {
-      const currentToken = getState().auth.token;
-      token.set(currentToken)
+      const { data } = await contactAxiosInstance.get('/users/current');
+      return data;
     } catch (error) {
       return rejectWithValue(error.message)
     }

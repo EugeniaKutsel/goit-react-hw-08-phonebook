@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { tokenSelector } from "redux/auth/authSelectors";
 import { useEffect } from "react";
 import { refreshCurrentUser } from "redux/auth/authOperations";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
+import Navigation from "./Navigation/Navigation";
 
 
 const App = () => {
@@ -21,11 +24,23 @@ const App = () => {
 
   return (
     <>
+      <Navigation/>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='contacts' element={<Contacts />} />
-        <Route path='register' element={<Register />} />
-        <Route path='login' element={<Login />} />
+        <Route path='contacts' element={
+          <PrivateRoute redirectTo='/login'>
+            <Contacts />
+          </PrivateRoute>
+         } />
+        <Route path='register' element={
+          <PublicRoute
+            Component={<Register />}
+            restricted
+            redirectTo="/contacts" />} />
+        <Route path='login' element={<PublicRoute
+            Component={<Login />}
+            restricted
+            redirectTo="/contacts" />} />
         <Route path='*' element={<Navigate to='/'/>} />
       </Routes>
     </>
