@@ -1,12 +1,13 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 200px;
+  gap: 5px;
+  width: 300px;
+  margin-top: 20px;
 }
 
 .formName {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -21,23 +22,24 @@
 }
 
 .formInput:focus {
-  border: 1px solid rgb(17, 0, 144);
+  border: 1px solid rgb(255, 129, 19);
 }
 
 .formButton {
-  border-radius: 4px;
-  background-color: rgb(17, 0, 144);
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background-color: rgb(255, 129, 19);
   color: #fff;
   padding: 5px;
-  font-size: 18px;
-  border: 1px solid transparent;
-  width: 210px;
-  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .formButton:hover {
   background-color: #fff;
-  color: rgb(17, 0, 144);
-  border: 1px solid rgb(17, 0, 144);
+  color: rgb(255, 129, 19);
+  border: 1px solid rgb(255, 129, 19);
 }

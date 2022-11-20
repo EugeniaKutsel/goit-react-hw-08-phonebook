@@ -4,6 +4,8 @@
   align-items: flex-start;
   gap: 5px;
   font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 .contacts__name {
@@ -16,7 +18,7 @@
   margin-left: 20px;
   border-radius: 4px;
   padding: 10px 20px;
-  background-color: rgb(17, 0, 144);
+  background-color: rgb(255, 129, 19);
   color: #fff;
   border: 1px solid transparent;
   font-size: 14px;
@@ -25,6 +27,6 @@
 
 .deleteButton:hover {
   background-color: #fff;
-  color: rgb(17, 0, 144);
-  border: 1px solid rgb(17, 0, 144);
+  color: rgb(255, 129, 19);
+  border: 1px solid rgb(255, 129, 19);
 }
