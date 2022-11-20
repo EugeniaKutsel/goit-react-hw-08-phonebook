@@ -3,7 +3,7 @@ import { logInUser, logOutUser, refreshCurrentUser, registerUser } from "./authO
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
-  user: {},
+  user: {name: null, email: null},
   token: '',
   loading: false,
   error: null,
@@ -42,7 +42,7 @@ const authSlice = createSlice({
       .addCase(logInUser.pending, handlePending)
       .addCase(logInUser.rejected, handleRejected)
       .addCase(logOutUser.fulfilled, (state) => {
-        state.user = {};
+        state.user = {name: null, email: null};
         state.token = '';
         state.loading = false;
         state.isLoggedIn = false;
@@ -50,7 +50,7 @@ const authSlice = createSlice({
       .addCase(logOutUser.pending, handlePending)
       .addCase(logOutUser.rejected, handleRejected)
       .addCase(refreshCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload;
         state.loading = false;
         state.isLoggedIn = true;
       })
