@@ -39,11 +39,12 @@ export const logOutUser = createAsyncThunk(
 export const refreshCurrentUser = createAsyncThunk(
   'auth/refresh', async (_, { rejectWithValue, getState }) => {
     const currentToken = getState().auth.token;
-    token.set(currentToken);
 
-    if (currentToken === null) {
-      return rejectWithValue;
+    if (!currentToken) {
+      return rejectWithValue();
     }
+
+    token.set(currentToken);
 
     try {
       const { data } = await contactAxiosInstance.get('/users/current');
