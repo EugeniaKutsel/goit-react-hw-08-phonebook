@@ -9,7 +9,8 @@ import { useEffect } from "react";
 import { refreshCurrentUser } from "redux/auth/authOperations";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import Navigation from "./Navigation/Navigation";
+import AppBar from "./AppBar/AppBar";
+import Container from "./Container/Container";
 
 
 const App = () => {
@@ -22,8 +23,9 @@ const App = () => {
   
   return (
     <>
-      <Navigation/>
-      <Routes>
+      <AppBar />
+      <Container>
+        <Routes>
         <Route path='/' element={<Home />} />
         <Route path='contacts' element={
           <PrivateRoute redirectTo='/login'>
@@ -41,6 +43,7 @@ const App = () => {
             redirectTo="/contacts" />} />
         <Route path='*' element={<Navigate to='/'/>} />
       </Routes>
+      </Container>
     </>
   );
 }

@@ -1,6 +1,10 @@
+import Container from "components/Container/Container";
+
 const Home = () => {
   return (
-    <h2>Home</h2>
+    <Container>
+      <h2>Welcome to the Phonebook app</h2>
+    </Container>
   );
 }
 

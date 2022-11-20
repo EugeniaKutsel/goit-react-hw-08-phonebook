@@ -1,0 +1,14 @@
+.navTitle {
+  margin-left: 100px;
+  margin-right: 136px;
+  color: rgb(255, 129, 19);
+  font-size: 26px;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 600px;
+}

@@ -1,0 +1,25 @@
+.userMenu {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.userName {
+  color: rgb(255, 129, 19);
+}
+
+.logOutBtn {
+  border-radius: 5px;
+  border: 1px solid rgb(255, 129, 19);
+  padding: 12px 24px;
+  color: #fff;
+  background-color: rgb(255, 129, 19);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.logOutBtn:hover {
+  background-color: #fff;
+  color: rgb(255, 129, 19);
+}
