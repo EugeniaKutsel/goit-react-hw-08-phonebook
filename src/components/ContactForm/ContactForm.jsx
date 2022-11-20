@@ -8,18 +8,20 @@ const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.elements.name.value;
-    const number = form.elements.number.value;
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { name, number } = e.currentTarget.elements;
+    const contact = {
+      name: name.value,
+      number: number.value,
+    }
     
     if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name: name, phone: number }));
-    form.reset();
+    dispatch(addContact(contact));
+    e.target.reset();
   }
 
   return (

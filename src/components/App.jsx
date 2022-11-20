@@ -16,12 +16,10 @@ const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(tokenSelector);
   
-
   useEffect(() => {
-    token&&dispatch(refreshCurrentUser())
+    token && dispatch(refreshCurrentUser())
   }, [dispatch, token])
   
-
   return (
     <>
       <Navigation/>
