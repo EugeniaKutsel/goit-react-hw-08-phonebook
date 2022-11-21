@@ -1,5 +1,7 @@
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { contactAxiosInstance, token } from "services/API";
+import { contactAxiosInstance, token } from "services/contactsAxiosInstance";
 
 export const registerUser = createAsyncThunk(
   'auth/register', async (user, { rejectWithValue }) => {
@@ -8,6 +10,7 @@ export const registerUser = createAsyncThunk(
       token.set(data.token)
       return data;
     } catch (error) {
+      toast.error('')
       return rejectWithValue(error.message);
     }
   }
@@ -20,6 +23,7 @@ export const logInUser = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
+      toast.error('Oops, something wrong, check your email or password')
       return rejectWithValue(error.message);
     }
   }
@@ -31,6 +35,7 @@ export const logOutUser = createAsyncThunk(
       await contactAxiosInstance.post('/users/logout');
       token.unset();
     } catch (error) {
+      toast.error(error.message)
       return rejectWithValue(error.message);
     }
   }
@@ -50,6 +55,7 @@ export const refreshCurrentUser = createAsyncThunk(
       const { data } = await contactAxiosInstance.get('/users/current');
       return data;
     } catch (error) {
+      toast.error(error.message)
       return rejectWithValue(error.message)
     }
   }
